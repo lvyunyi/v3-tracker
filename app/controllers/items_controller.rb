@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @item = Item.new
+    @finish = Item.where(status: true).length.to_f/Item.all.length.to_f*100
   end
 
   # GET /items/1
