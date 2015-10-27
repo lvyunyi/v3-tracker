@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :test_items
   resources :items
 
   get 'items/:id/finish' => 'items#finish', as: :finish_item
