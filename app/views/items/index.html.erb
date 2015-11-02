@@ -45,7 +45,7 @@
         </td>
         <td><%= item.content %></td>
         <td><%= item.name %></td>
-        <td><%= time_ago_in_words(item.created_at) %></td>
+        <td><%= time_ago_in_words(item.created_at) %>前</td>
         <td>
           <%= link_to "修改",
                       edit_item_path(item), :class => 'btn btn-default btn-xs' %>
