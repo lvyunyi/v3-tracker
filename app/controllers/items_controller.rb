@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.all.reverse
     @item = Item.new
     @finish = (Item.where(status: true).length.to_f/Item.all.length.to_f*100).round.to_f
   end
