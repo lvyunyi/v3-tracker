@@ -43,7 +43,7 @@
             <%= link_to "取消完成", unfinish_item_path(item)%>
           <% end %>
         </td>
-        <td><%= item.content %></td>
+        <td><%= markdown item.content %></td>
         <td><%= item.name %></td>
         <td><%= time_ago_in_words(item.created_at) %>前</td>
         <td>
@@ -100,7 +100,7 @@
         <div class="control-group">
           <%= f.label "内容", :class => 'control-label' %>
           <div class="controls">
-            <%= f.text_area :content, :class => 'form-control' %>
+            <%= f.text_area :content, :class => 'form-control', :placeholder => '支持markdown语法' %>
           </div>
           <%= f.error_span(:content) %>
         </div>

@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @item = Item.new
-    @finish = Item.where(status: true).length.to_f/Item.all.length.to_f*100
+    @finish = (Item.where(status: true).length.to_f/Item.all.length.to_f*100).round.to_f
   end
 
   # GET /items/1
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to items_path, notice: '添加完成，快召唤你的小伙伴消灭TA吧┏ (゜ω゜)=☞' }
+        format.html { redirect_to items_path, notice: '添加完成' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to items_path, notice: '更新成功...吓得我都坐地上了 ╮(╯▽╰)╭' }
+        format.html { redirect_to items_path, notice: '更新成功..' }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
   def finish
     respond_to do |format|
       if @item.update_attribute(:status, true)
-        format.html { redirect_to items_path, notice: '已经完成...世界更加和平了 <(￣▽￣)> 哇哈哈…' }
+        format.html { redirect_to items_path, notice: '已经完成..' }
       else
         format.html { redirect_to items_path, notice: '失败...联系系统管理员吧 ╮(╯▽╰)╭' }
       end
@@ -66,7 +66,7 @@ class ItemsController < ApplicationController
   def unfinish
     respond_to do |format|
       if @item.update_attribute(:status, false)
-        format.html { redirect_to items_path, notice: '取消完成...你就是那个传说中的大魔王么 (╰_╯)#' }
+        format.html { redirect_to items_path, notice: '取消完成..' }
       else
         format.html { redirect_to items_path, notice: '失败...联系系统管理员吧 ╮(╯▽╰)╭' }
       end
@@ -78,7 +78,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: '删除成功，你又一次为世界的和平做了贡献 莔rz' }
+      format.html { redirect_to items_url, notice: '删除成功' }
       format.json { head :no_content }
     end
   end
