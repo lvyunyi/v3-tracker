@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :update_items
+  resources :optimize_items
   resources :items
 
   get 'items/:id/finish' => 'items#finish', as: :finish_item
