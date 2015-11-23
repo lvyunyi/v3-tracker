@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :update_items
-  resources :optimize_items
+  resources :test_items
   resources :items
 
   get 'items/:id/finish' => 'items#finish', as: :finish_item
   get 'items/:id/unfinish' => 'items#unfinish', as: :unfinish_item
+  get 'undone' => 'items#undone', as: :undone_item
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -9,6 +9,13 @@ class ItemsController < ApplicationController
     @finish = (Item.where(status: true).length.to_f/Item.all.length.to_f*100).round.to_f
   end
 
+  def undone
+    @items = Item.where(status: false).reverse
+    #@items = Item.all.reverse
+    @item = Item.new
+    @finish = (Item.where(status: true).length.to_f/Item.all.length.to_f*100).round.to_f
+  end
+
   # GET /items/1
   # GET /items/1.json
   def show
@@ -56,9 +63,9 @@ class ItemsController < ApplicationController
   def finish
     respond_to do |format|
       if @item.update_attribute(:status, true)
-        format.html { redirect_to items_path, notice: '已经完成..' }
+        format.html { redirect_to :back, notice: '已经完成..' }
       else
-        format.html { redirect_to items_path, notice: '失败...联系系统管理员吧 ╮(╯▽╰)╭' }
+        format.html { redirect_to :back, notice: '失败...联系系统管理员吧 ╮(╯▽╰)╭' }
       end
     end
   end
@@ -66,9 +73,9 @@ class ItemsController < ApplicationController
   def unfinish
     respond_to do |format|
       if @item.update_attribute(:status, false)
-        format.html { redirect_to items_path, notice: '取消完成..' }
+        format.html { redirect_to :back, notice: '取消完成..' }
       else
-        format.html { redirect_to items_path, notice: '失败...联系系统管理员吧 ╮(╯▽╰)╭' }
+        format.html { redirect_to :back, notice: '失败...联系系统管理员吧 ╮(╯▽╰)╭' }
       end
     end
   end

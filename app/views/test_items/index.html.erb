@@ -1,0 +1,90 @@
+<%- model_class = TestItem -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:content) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @test_items.each do |test_item| %>
+    <tr>
+      <td><%= link_to test_item.id, test_item_path(test_item) %></td>
+      <td><%= test_item.name %></td>
+      <td><%= test_item.content %></td>
+      <td><%=l test_item.created_at %></td>
+      <td>
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+        edit_test_item_path(test_item), :class => 'btn btn-default btn-xs' %>
+        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+        test_item_path(test_item),
+        :method => :delete,
+        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+        :class => 'btn btn-xs btn-danger' %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data-whatever="@mdo" data-remote="true">新增</button>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <%= form_for @test_item, :html => { :class => "form-horizontal test_item" } do |f| %>
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">新增一个项目</h4>
+      </div>
+      <div class="modal-body">
+
+
+        <% if @test_item.errors.any? %>
+        <div id="error_expl" class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= pluralize(@test_item.errors.count, "error") %> prohibited this item from being saved:</h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <% @test_item.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <% end %>
+
+        <div class="control-group">
+          <%= f.label "内容", :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_area :content, :class => 'form-control', :placeholder => '支持markdown语法', :rows => 7 %>
+          </div>
+          <%= f.error_span(:content) %>
+        </div>
+        <div class="control-group">
+          <%= f.label "责任人", :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :name, :class => 'form-control' %>
+          </div>
+          <%= f.error_span(:name)%>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <%= f.submit "提交", :class => 'btn btn-primary' %>
+      </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>

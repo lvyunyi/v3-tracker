@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103024525) do
+ActiveRecord::Schema.define(version: 20151117073141) do
 
   create_table "items", force: :cascade do |t|
     t.boolean  "status"
@@ -31,9 +31,8 @@ ActiveRecord::Schema.define(version: 20151103024525) do
   end
 
   create_table "test_items", force: :cascade do |t|
-    t.boolean  "status"
-    t.text     "content"
     t.string   "name"
+    t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
