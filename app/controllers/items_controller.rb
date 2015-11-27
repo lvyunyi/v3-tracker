@@ -87,6 +87,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to items_url, notice: '删除成功' }
       format.json { head :no_content }
+      format.js
     end
   end
 

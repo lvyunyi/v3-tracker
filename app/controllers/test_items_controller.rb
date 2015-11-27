@@ -59,6 +59,7 @@ class TestItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to test_items_url, notice: 'Test item was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

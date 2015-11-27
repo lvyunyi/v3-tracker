@@ -25,9 +25,9 @@
   <tbody>
     <% @items.each do |item| %>
     <% if item.status == false %>
-    <tr class="success" >
+    <tr class="success" id="item_<%= item.id%>">
       <% else %>
-      <tr>
+      <tr  id="item_<%= item.id%>">
         <% end %>
         <td><%= link_to item.id, item_path(item) %></td>
         <!-- <td><%= check_box_tag '完成', item.id, item.status %> 完成 </td> -->
@@ -54,7 +54,8 @@
             item_path(item),
             :method => :delete,
             :data => { :confirm => '确定删除？' },
-            :class => 'btn btn-default btn-xs' %>
+            :class => 'btn btn-default btn-xs',
+            :remote => true %>
           </td>
         </tr>
         <% end %>
