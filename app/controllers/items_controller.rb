@@ -64,6 +64,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.update_attribute(:status, true)
         format.html { redirect_to :back, notice: '已经完成..' }
+        format.js
       else
         format.html { redirect_to :back, notice: '失败...联系系统管理员吧 ╮(╯▽╰)╭' }
       end
@@ -74,6 +75,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.update_attribute(:status, false)
         format.html { redirect_to :back, notice: '取消完成..' }
+        format.js
       else
         format.html { redirect_to :back, notice: '失败...联系系统管理员吧 ╮(╯▽╰)╭' }
       end

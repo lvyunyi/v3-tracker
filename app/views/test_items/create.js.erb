@@ -1,0 +1,23 @@
+// var $lastRow = $('.table-striped tbody tr').first();
+
+// var html = '<tr id="test_item_<%= @test_item.id %>">
+// <td><a href="/test_items/<%= @test_item.id %>"><%= @test_item.id %></a></td>
+// <td><%= @test_item.name %></td>
+// <td><%= @test_item.content %></td>
+// <td><%=l test_item.created_at %></td>
+// <td>
+// <a class="btn btn-default btn-xs" href="/test_items/<%= @test_item.id %>/edit"><span class="translation_missing" title="translation missing: zh-CN.helpers.links.edit">Edit</span></a>
+// <a data-confirm="Are you sure?" class="btn btn-xs btn-danger" data-remote="true" rel="nofollow" data-method="delete" href="/test_items/<%= @test_item.id %>"><span class="translation_missing" title="translation missing: zh-CN.helpers.links.destroy">Destroy</span></a>
+// </td>
+// </tr>';
+
+// $(html).insertBefore($lastRow);
+
+
+//$('#test_item_table').prepend('<%= j render(@test_item) %>');
+//$('#myModal').modal('hide');
+
+$('#myModal').modal('hide');
+jQuery('<tr id="test_item_<%=@test_item.id%>" style="display:none;"><td><a href="/test_items/<%=@test_item.id%>"><%=@test_item.id%></a></td><td><%=@test_item.name%></td><td><%=@test_item.content%></td><td><%= time_ago_in_words(@test_item.created_at) %></td><td><a class="btn btn-default btn-xs" href="/test_items/<%=@test_item.id%>/edit"><span class="translation_missing" title="translation missing: zh-CN.helpers.links.edit">Edit</span></a><a data-confirm="Are you sure?" class="btn btn-xs btn-danger" data-remote="true" rel="nofollow" data-method="delete" href="/test_items/<%=@test_item.id%>"><span class="translation_missing" title="translation missing: zh-CN.helpers.links.destroy">Destroy</span></a></td></tr>').prependTo('tbody').show(500);
+
+

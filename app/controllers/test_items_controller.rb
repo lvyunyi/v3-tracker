@@ -29,8 +29,9 @@ class TestItemsController < ApplicationController
 
     respond_to do |format|
       if @test_item.save
-        format.html { redirect_to @test_item, notice: 'Test item was successfully created.' }
+        format.html { redirect_to test_items_url, notice: '111111111' }
         format.json { render :show, status: :created, location: @test_item }
+        #format.js
       else
         format.html { render :new }
         format.json { render json: @test_item.errors, status: :unprocessable_entity }
